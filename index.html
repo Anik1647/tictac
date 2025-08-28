@@ -7,22 +7,69 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+    <!-- Fireworks/Confetti + Background Canvas -->
+    <canvas id="fxCanvas" class="fx-canvas" aria-hidden="true"></canvas>
+    <!-- Vignette overlay above canvas, below main -->
+    <div class="vignette" aria-hidden="true"></div>
+    <!-- Aurora gradient glow layer -->
+    <div class="aurora" aria-hidden="true"></div>
+
     <main>
-        <h1>Tic Tac Toe</h1>
+        <h1 class="title">Tic Tac Toe</h1>
+
+        <!-- Turn Indicator -->
+        <div id="statusBar" class="status hidden">
+            <span id="turnText">Waiting to start...</span>
+        </div>
+
+        <!-- Game Board -->
         <div class="container">
-        <div class="game">
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
-            <button class="box"></button>
+            <div class="game" id="board">
+                <button class="box" data-index="0"></button>
+                <button class="box" data-index="1"></button>
+                <button class="box" data-index="2"></button>
+                <button class="box" data-index="3"></button>
+                <button class="box" data-index="4"></button>
+                <button class="box" data-index="5"></button>
+                <button class="box" data-index="6"></button>
+                <button class="box" data-index="7"></button>
+                <button class="box" data-index="8"></button>
+            </div>
         </div>
+
+        <div class="actions">
+            <button id="reset-btn" class="btn secondary">Reset Board</button>
+            <button id="new-game-btn" class="btn">New Game</button>
         </div>
-        <button id="reset-btn">Reset Game</button>
+
+        <!-- Start Modal -->
+        <div id="startModal" class="modal open">
+            <div class="modal-content">
+                <h2>Start New Game</h2>
+                <p class="sub">Player 1 will be <strong>X</strong> and Player 2 will be <strong>O</strong>.</p>
+                <div class="form">
+                    <label>Player 1 Name</label>
+                    <input id="p1" type="text" placeholder="Alice" />
+                    <label>Player 2 Name</label>
+                    <input id="p2" type="text" placeholder="Bob" />
+                </div>
+                <div class="modal-actions">
+                    <button id="startBtn" class="btn">Start</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Modal -->
+        <div id="resultModal" class="modal">
+            <div class="modal-content">
+                <h2 id="resultTitle">Game Over</h2>
+                <p id="resultText"></p>
+                <div class="modal-actions">
+                    <button id="playAgainBtn" class="btn">Play Again</button>
+                    <button id="newNamesBtn" class="btn secondary">New Players</button>
+                </div>
+            </div>
+        </div>
     </main>
     
     <script src="app.js"></script>
